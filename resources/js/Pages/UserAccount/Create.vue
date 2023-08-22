@@ -2,7 +2,7 @@
   <form @submit.prevent="register">
     <div class="w-1/2 mx-auto">
       <div class="">
-        <label for="name" class="label">Name</label>
+        <label for="name" class="label">名稱</label>
         <input v-model="form.name" id="name" type="text" class="input" />
         <div v-if="form.errors.name" class="input-error">
           {{ form.errors.name }}
@@ -18,7 +18,7 @@
       </div>
 
       <div class="mt-4">
-        <label for="password" class="label">Password</label>
+        <label for="password" class="label">密碼</label>
         <input
           v-model="form.password"
           id="password"
@@ -31,9 +31,7 @@
       </div>
 
       <div class="mt-4">
-        <label for="password_confirmation" class="label"
-          >Confirm Password</label
-        >
+        <label for="password_confirmation" class="label">密碼驗證</label>
         <input
           v-model="form.password_confirmation"
           id="password_confirmation"
@@ -43,10 +41,10 @@
       </div>
 
       <div class="mt-4">
-        <button class="btn-primary w-full" type="submit">Create Account</button>
+        <button class="btn-primary w-full" type="submit">建立帳號</button>
         <div class="mt-2 text-center">
           <Link :href="route('login')" class="text-sm text-gray-500"
-            >Already have an account</Link
+            >已經有帳號了！</Link
           >
         </div>
       </div>

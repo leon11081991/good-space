@@ -6,13 +6,13 @@
           v-model.number="filterForm.priceFrom"
           class="input-filter-l w-28"
           type="text"
-          placeholder="Price from"
+          placeholder="最低價格"
         />
         <input
           v-model.number="filterForm.priceTo"
           class="input-filter-r w-28"
           type="text"
-          placeholder="Price to"
+          placeholder="最高價格"
         />
       </div>
 
@@ -23,7 +23,7 @@
           name=""
           id=""
         >
-          <option :value="null">Beds</option>
+          <option :value="null">房間數</option>
           <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
           <option value="">6+</option>
         </select>
@@ -33,7 +33,7 @@
           name=""
           id=""
         >
-          <option :value="null">Bathrooms</option>
+          <option :value="null">衛浴數</option>
           <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
           <option value="">6+</option>
         </select>
@@ -44,18 +44,18 @@
           v-model.number="filterForm.areaFrom"
           class="input-filter-l w-28"
           type="text"
-          placeholder="Area from"
+          placeholder="最低坪數"
         />
         <input
           v-model.number="filterForm.areaTo"
           class="input-filter-r w-28"
           type="text"
-          placeholder="Area to"
+          placeholder="最高坪數"
         />
       </div>
 
-      <button class="btn-normal" type="submit">Filter</button>
-      <button @click="clear" type="reset">Clear</button>
+      <button class="btn-normal" type="submit">篩選</button>
+      <button @click="clear" type="reset">清除</button>
     </div>
   </form>
 </template>

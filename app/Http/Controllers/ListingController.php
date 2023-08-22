@@ -19,30 +19,28 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->only(['priceFrom','priceTo','beds','baths','areaFrom','areaTo']);
-        $query = Listing::mostRecent();
 
         // * query addition 添加查詢(優化後)
-        $query->when(
-            $filters['priceFrom'] ?? false,
-            // $value 是 第一個參數為true時，第一個參數本身的值
-            fn($query,$value)=>$query->where('price', '>=',$value)
-        )->when(
-            $filters['priceTo'] ?? false,
-            fn($query,$value)=>$query->where('price', '<=',$value)
-        )->when(
-            $filters['beds'] ?? false,
-            fn($query,$value)=>$query->where('beds', (int)$value < 6 ? '=' : '>=' ,$value)
-        )->when(
-            $filters['baths'] ?? false,
-            fn($query,$value)=>$query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
-        )->when(
-            $filters['areaFrom'] ?? false,
-            fn($query,$value)=>$query->where('area', '>=',$value)
-        )->when(
-            $filters['areaTo'] ?? false,
-            fn($query,$value)=>$query->where('area', '<=',$value)
-        );
+        // $query->when(
+        //     $filters['priceFrom'] ?? false,
+        //     // $value 是 第一個參數為true時，第一個參數本身的值
+        //     fn($query,$value)=>$query->where('price', '>=',$value)
+        // )->when(
+        //     $filters['priceTo'] ?? false,
+        //     fn($query,$value)=>$query->where('price', '<=',$value)
+        // )->when(
+        //     $filters['beds'] ?? false,
+        //     fn($query,$value)=>$query->where('beds', (int)$value < 6 ? '=' : '>=' ,$value)
+        // )->when(
+        //     $filters['baths'] ?? false,
+        //     fn($query,$value)=>$query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
+        // )->when(
+        //     $filters['areaFrom'] ?? false,
+        //     fn($query,$value)=>$query->where('area', '>=',$value)
+        // )->when(
+        //     $filters['areaTo'] ?? false,
+        //     fn($query,$value)=>$query->where('area', '<=',$value)
+        // );
 
         // * query addition 添加查詢(優化前)
         // if($filters['priceFrom'] ?? false){
@@ -75,53 +73,16 @@ class ListingController extends Controller
         //     $query->where('area', '<=', $filters['areaTo']);
         // }
 
-        return inertia(
-            'Listing/Index',
+        $filters = $request->only(['priceFrom','priceTo','beds','baths','areaFrom','areaTo']);
+
+        return inertia('Listing/Index',
             [
                 'filters'=> $filters,
-                'listings' => $query->paginate(10)->withQueryString()
-            ]
-        );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // $this->authorize('create', Listing::class);
-
-        return inertia('Listing/Create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // * 顯示資料在前台
-        //dd($request->all());
-
-        // * 將表單的資料創建一個資料庫列表(會直接創建 without validation)
-        //Listing::create($request->all());
-
-        
-        $request->user()->listings()->create(
-            $request->validate(
-                [
-                    'beds'=>'required|integer|min:0|max:20',
-                    'baths'=>'required|integer|min:0|max:20',
-                    'area'=>'required|integer|min:15|max:1500',
-                    'city'=>'required',
-                    'code'=>'required',
-                    'street'=>'required',
-                    'street_num'=>'required|integer|max:1000',
-                    'price'=>'required'
-                ]
-            )
-        );
-
-        return redirect()->route('listing.index')->with('success','Listing was created!');
+                'listings' => Listing::mostRecent()
+                    ->filter($filters)
+                    ->paginate(10)
+                    ->withQueryString()
+            ]);
     }
 
     /**
@@ -130,48 +91,22 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         // $this->authorize('view',$listing);
+        $listing->load(['images']);
 
-        return inertia('Listing/Show',['listing'=>$listing]);
-    }
+        /*
+            * 判斷使用者有沒有登入
+            * 如果沒有登入那 offer就沒有資料
+            * 有登入就 query 該使用者的 offer資料
+        */
+        $offer = !Auth::user()?null:$listing->offers()->byMe()->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Listing $listing)
-    {
-        return inertia('Listing/Edit',['listing'=>$listing]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Listing $listing)
-    {
-        $listing->update(
-            $request->validate(
-                [
-                    'beds'=>'required|integer|min:0|max:20',
-                    'baths'=>'required|integer|min:0|max:20',
-                    'area'=>'required|integer|min:15|max:1500',
-                    'city'=>'required',
-                    'code'=>'required',
-                    'street'=>'required',
-                    'street_num'=>'required|integer|max:1000',
-                    'price'=>'required'
-                ]
-            )
+        return inertia('Listing/Show',
+        [
+            'listing'=>$listing,
+            'offerMade'=>$offer
+        ]
         );
-
-        return redirect()->route('listing.index')->with('success','Listing was changed!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Listing $listing)
-    {
-        $listing->delete();
-
-        return redirect()->back()->with('success', 'Listing is deleted!');
-    }
+    
 }

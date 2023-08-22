@@ -1,13 +1,13 @@
 <template>
   <div>
     <span class="font-bold">{{ listing.beds }}</span>
-    beds
+    房
     <span class="text-gray-400 p-1">| </span>
     <span class="font-bold">{{ listing.baths }}</span>
-    baths
+    衛
     <span class="text-gray-400 p-1">| </span>
     <span class="font-bold">{{ listing.area }}</span>
-    m²
+    坪
   </div>
 </template>
 

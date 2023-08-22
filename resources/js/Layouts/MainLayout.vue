@@ -5,7 +5,7 @@
     <div class="container mx-auto">
       <nav class="p-4 flex items-center justify-between">
         <div class="text-lg font-medium">
-          <Link :href="route('listing.index')">Listings</Link>
+          <Link :href="route('listing.index')">房屋資訊</Link>
         </div>
         <div
           class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center"
@@ -13,9 +13,13 @@
           <Link :href="route('listing.index')">GoodSpace</Link>
         </div>
         <div v-if="user" class="flex items-center gap-4">
-          <div class="text-sm text-gray-500">{{ user.name }}</div>
-          <Link :href="route('listing.create')" class="btn-primary"
-            >+ New Listing</Link
+          <Link
+            class="text-sm text-gray-500"
+            :href="route('realtor.listing.index')"
+            >{{ user.name }}</Link
+          >
+          <Link :href="route('realtor.listing.create')" class="btn-primary"
+            >+ 建立資訊</Link
           >
           <div>
             <Link :href="route('logout')" method="delete" as="button"
@@ -24,8 +28,8 @@
           </div>
         </div>
         <div v-else class="flex items-center gap-2">
-          <Link :href="route('user-account.create')">Register</Link>
-          <Link :href="route('login')">Sign in</Link>
+          <Link :href="route('user-account.create')">註冊</Link>
+          <Link :href="route('login')">登入</Link>
         </div>
       </nav>
     </div>
@@ -47,7 +51,6 @@ import { computed } from "vue";
 import { Link, usePage } from "@inertiajs/vue3";
 
 const page = usePage();
-
 const flashSuccess = computed(() => page.props.flash.success);
 const user = computed(() => page.props.user);
 </script>
