@@ -36,7 +36,16 @@ class ListingPolicy
      */
     public function view(?User $user, Listing $listing): bool
     {
-        return true;
+        // 所有人都可以訪問
+        // return true;
+
+        // 使用者登入後可以看到自己建立的列表
+        if($listing->by_user_id === $user?->id){
+            return true;
+        }
+
+        // 只能看到未售出的列表
+        return $listing->sold_at === null;
     }
 
     /**

@@ -11,6 +11,7 @@ class ListingImage extends Model
 {
     use HasFactory;
 
+    // 開啟修改哪些資料庫欄位的權限
     protected $fillable = ['filename'];
     protected $appends = ['src'];
 

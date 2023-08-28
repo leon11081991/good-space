@@ -13,17 +13,32 @@ class Offer extends Model
 {
     use HasFactory;
 
-    protected $fillable= ['amount', 'accepted_at', 'rejected_at'];
+    // 開啟修改哪些資料庫欄位的權限
+    protected $fillable= [
+        'amount', 
+        'accepted_at', 
+        'rejected_at'
+    ];
 
-    public function listing():BelongsTo {
+    // 每一筆出價都屬於一個房屋清單
+    public function listing():BelongsTo
+    {
         return $this->belongsTo(Listing::class, 'listing_id');
     }
 
-    public function bidder():BelongsTo {
-        return $this->belongsTo(User::class, 'user_id');
+    // 每一筆出價都有一個出價者
+    public function bidder():BelongsTo
+    {
+        return $this->belongsTo(User::class, 'bidder_id');
     }
 
-    public function scopeByMe(Builder $query): Builder{
-        return $query->where('user_id', Auth::user()?->id);
+    public function scopeByMe(Builder $query): Builder
+    {
+        return $query->where('bidder_id', Auth::user()?->id);
+    }
+
+    public function scopeExcept(Builder $query, Offer $offer): Builder
+    {
+        return $query->where('id', '!=', $offer->id);
     }
 }

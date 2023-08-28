@@ -23,7 +23,7 @@
           >
           <div>
             <Link :href="route('logout')" method="delete" as="button"
-              >Logout</Link
+              >登出</Link
             >
           </div>
         </div>

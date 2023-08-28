@@ -41,7 +41,7 @@ class RealtorListingController extends Controller
         return inertia(
             'Realtor/Show',
             [
-                'listing'=>$listing->load('offers')
+                'listing'=>$listing->load('offers', 'offers.bidder')
             ]
         );
     }
@@ -76,7 +76,7 @@ class RealtorListingController extends Controller
                     'city'=>'required',
                     'code'=>'required',
                     'street'=>'required',
-                    'street_num'=>'',
+                    'street_num'=>'nullable',
                     'price'=>'required'
                 ]
             )
@@ -102,7 +102,7 @@ class RealtorListingController extends Controller
                     'city'=>'required',
                     'code'=>'required',
                     'street'=>'required',
-                    'street_num'=>'',
+                    'street_num'=>'nullable',
                     'price'=>'required'
                 ]
             )
@@ -115,13 +115,13 @@ class RealtorListingController extends Controller
         // soft delete
         $listing->delete();
 
-        return redirect()->back()->with('success', 'Listing is deleted!');
+        return redirect()->back()->with('success', '房屋資訊已被修改!');
     }
 
     public function restore(Listing $listing){
     
         $listing->restore();
 
-        return redirect()->back()->with('success', 'Listing is restored!');
+        return redirect()->back()->with('success', '房屋資訊已復原!');
     }
 }

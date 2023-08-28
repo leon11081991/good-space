@@ -15,7 +15,18 @@ class Listing extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['beds', 'baths','area', 'city', 'code', 'street', 'street_num', 'price'];
+    // 開啟修改哪些資料庫欄位的權限
+    // reference: https://ithelp.ithome.com.tw/articles/10247871
+    protected $fillable = [
+        'beds', 
+        'baths',
+        'area', 
+        'city', 
+        'code', 
+        'street', 
+        'street_num', 
+        'price'
+    ];
     protected $sortable = ['price', 'created_at'];
 
     public function owner(): BelongsTo {
@@ -33,6 +44,20 @@ class Listing extends Model
 
     public function offers():HasMany{
         return $this->hasMany(Offer::class, 'listing_id');
+    }
+
+    public function scopeWithoutSold(Builder $query):Builder
+    {
+        // 沒有任何出價，或是，有出價但沒有出價被接受或拒絕的
+        // return $query->doesntHave('offers')
+        //     ->orWhereHas(
+        //         'offers', 
+        //         fn(Builder $query)=> 
+        //             $query->whereNull('accepted_at')->whereNull('rejected_at')
+        //     );
+
+        // 'sold_at'欄位，如果有時間表示已售出，如果null表示未售出
+        return $query->whereNull('sold_at');
     }
 
     public function scopeFilter(Builder $query , array $filters):Builder{

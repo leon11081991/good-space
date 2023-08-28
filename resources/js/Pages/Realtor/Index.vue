@@ -27,12 +27,12 @@
               class="btn-outline text-xs font-medium"
               :href="route('listing.show', { listing: listing.id })"
               target="_blank"
-              >Preview</a
+              >預覽</a
             >
             <Link
               class="btn-outline text-xs font-medium"
               :href="route('realtor.listing.edit', { listing: listing.id })"
-              >Edit</Link
+              >編輯</Link
             >
             <Link
               v-if="!listing.deleted_at"
@@ -40,7 +40,7 @@
               as="button"
               method="delete"
               :href="route('realtor.listing.destroy', { listing: listing.id })"
-              >Delete</Link
+              >刪除</Link
             >
             <Link
               v-else
@@ -48,7 +48,7 @@
               as="button"
               method="put"
               :href="route('realtor.listing.restore', { listing: listing.id })"
-              >Restore</Link
+              >恢復</Link
             >
           </div>
           <div class="mt-2">

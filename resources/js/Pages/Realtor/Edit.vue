@@ -2,7 +2,7 @@
   <form @submit.prevent="update">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-2">
-        <label class="label">Beds</label>
+        <label class="label">房間數</label>
         <input v-model.number="form.beds" type="text" class="input" />
         <div v-if="form.errors.beds" class="input-error">
           {{ form.errors.beds }}
@@ -10,7 +10,7 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Bathrooms</label>
+        <label class="label">衛浴數</label>
         <input v-model.number="form.baths" type="text" class="input" />
         <div v-if="form.errors.baths" class="input-error">
           {{ form.errors.baths }}
@@ -18,7 +18,7 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Area</label>
+        <label class="label">坪數</label>
         <input v-model.number="form.area" type="text" class="input" />
         <div v-if="form.errors.area" class="input-error">
           {{ form.errors.area }}
@@ -26,7 +26,7 @@
       </div>
 
       <div class="col-span-4">
-        <label class="label">City</label>
+        <label class="label">行政區</label>
         <input v-model.trim="form.city" type="text" class="input" />
         <div v-if="form.errors.city" class="input-error">
           {{ form.errors.city }}
@@ -34,7 +34,7 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Post Code</label>
+        <label class="label">郵遞區號</label>
         <input v-model.trim="form.code" type="text" class="input" />
         <div v-if="form.errors.code" class="input-error">
           {{ form.errors.code }}
@@ -42,7 +42,7 @@
       </div>
 
       <div class="col-span-4">
-        <label class="label">Street</label>
+        <label class="label">街道名</label>
         <input v-model.trim="form.street" type="text" class="input" />
         <div v-if="form.errors.street" class="input-error">
           {{ form.errors.street }}
@@ -50,7 +50,7 @@
       </div>
 
       <div class="col-span-2">
-        <label class="label">Street Number</label>
+        <label class="label">街道號碼</label>
         <input v-model.trim="form.street_num" type="text" class="input" />
         <div v-if="form.errors.street_num" class="input-error">
           {{ form.errors.street_num }}
@@ -58,7 +58,7 @@
       </div>
 
       <div class="col-span-6">
-        <label class="label">Price</label>
+        <label class="label">總價</label>
         <input v-model.number="form.price" type="text" class="input" />
         <div v-if="form.errors.price" class="input-error">
           {{ form.errors.price }}
@@ -66,7 +66,7 @@
       </div>
 
       <div class="col-span-6">
-        <button type="submit" class="btn-primary">Save</button>
+        <button type="submit" class="btn-primary">儲存</button>
       </div>
     </div>
   </form>

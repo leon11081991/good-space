@@ -15,8 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignIdFor(\App\Models\Listing::class,'listing_id')->constrained('listings');
-            $table->foreignIdFor(\App\Models\User::class,'user_id')->constrained('users');
+            $table->foreignIdFor(
+                \App\Models\Listing::class,
+                'listing_id'
+                )->constrained('listings');
+            $table->foreignIdFor(
+                \App\Models\User::class,
+                'bidder_id'
+                )->constrained('users');
 
             $table->unsignedInteger('amount');
 

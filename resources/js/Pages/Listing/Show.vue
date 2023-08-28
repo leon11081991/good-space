@@ -49,19 +49,19 @@
 
             <div class="mt-2 text-gray-500">
               <div class="flex justify-between">
-                <div class="">Total paid</div>
+                <div class="">總付額</div>
                 <div class="">
                   <Price :price="totalPaid" class="font-medium" />
                 </div>
               </div>
               <div class="flex justify-between">
-                <div class="">Principle paid</div>
+                <div class="">房屋本金</div>
                 <div class="">
                   <Price :price="listing.price" class="font-medium" />
                 </div>
               </div>
               <div class="flex justify-between">
-                <div class="">Interest paid</div>
+                <div class="">房貸金額</div>
                 <div class="">
                   <Price :price="totalInterest" class="font-medium" />
                 </div>

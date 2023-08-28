@@ -8,12 +8,12 @@
           type="checkbox"
           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
         />
-        <label for="deleted">Deleted</label>
+        <label for="deleted">(包含)已刪除</label>
       </div>
       <div class="">
-        <select class="input-filter-l w-24" v-model="filterForm.by">
-          <option value="created_at">Added</option>
-          <option value="price">Price</option>
+        <select class="input-filter-l w-32" v-model="filterForm.by">
+          <option value="created_at">刊登時間</option>
+          <option value="price">價格</option>
         </select>
         <select class="input-filter-r w-32" v-model="filterForm.order">
           <option
@@ -37,21 +37,21 @@ import { debounce } from "lodash";
 const sortLabels = {
   created_at: [
     {
-      label: "Latest",
+      label: "最新",
       value: "desc",
     },
     {
-      label: "Oldest",
+      label: "最舊",
       value: "asc",
     },
   ],
   price: [
     {
-      label: "Pricey",
+      label: "最高",
       value: "desc",
     },
     {
-      label: "Cheapest",
+      label: "最低",
       value: "asc",
     },
   ],
