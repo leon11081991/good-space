@@ -73,17 +73,28 @@ class ListingController extends Controller
         //     $query->where('area', '<=', $filters['areaTo']);
         // }
 
-        $filters = $request->only(['priceFrom','priceTo','beds','baths','areaFrom','areaTo']);
-
-        return inertia('Listing/Index',
+        $filters = $request->only(
             [
-                'filters'=> $filters,
+                'priceFrom', 
+                'priceTo', 
+                'beds', 
+                'baths', 
+                'areaFrom', 
+                'areaTo'
+            ]
+        );
+
+        return inertia(
+            'Listing/Index',
+            [
+                'filters' => $filters,
                 'listings' => Listing::mostRecent()
                     ->filter($filters)
                     ->withoutSold()
                     ->paginate(10)
                     ->withQueryString()
-            ]);
+            ]
+        );
     }
 
     /**

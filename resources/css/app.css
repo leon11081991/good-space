@@ -34,4 +34,8 @@
   .btn-outline {
     @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800 transition ease-in-out duration-500;
   }
+
+  .tag {
+    @apply text-xs font-bold border p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2;
+  }
 }

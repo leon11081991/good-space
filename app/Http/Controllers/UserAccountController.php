@@ -21,6 +21,6 @@ class UserAccountController extends Controller
         ]));
         Auth::login($user);
 
-        return redirect()->route('listing.index')->with('success','Account created!');
+        return redirect()->route('listing.index')->with('success','帳號已建立成功!');
     }
 }

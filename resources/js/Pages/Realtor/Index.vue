@@ -5,7 +5,10 @@
     <RealtorFilters :filters="filters" />
   </section>
 
-  <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+  <section
+    v-if="listings.data.length"
+    class="grid grid-cols-1 lg:grid-cols-2 gap-2"
+  >
     <Box
       v-for="listing in listings.data"
       :key="listing.id"
@@ -15,6 +18,7 @@
         class="flex flex-col md:flex-row gap-2 md:items-center justify-between"
       >
         <div :class="{ 'opacity-25': listing.deleted_at }">
+          <div v-if="listing.sold_at != null" class="tag">售出</div>
           <div class="xl:flex items-center gap-2">
             <Price :price="listing.price" class="text-2xl font-medium" />
             <ListingSpace :listing="listing" />
@@ -72,6 +76,8 @@
     </Box>
   </section>
 
+  <EmptyState v-else>尚無建立房屋資訊</EmptyState>
+
   <section
     v-if="listings.data.length"
     class="w-full flex justify-center mt-4 mb-4"
@@ -89,6 +95,7 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import listingAddress from "@/Components/ListingAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
 import Pagination from "@/Components/UI/Pagination.vue";
+import EmptyState from "@/Components/UI/EmptyState.vue";
 
 defineProps({
   filters: Object,

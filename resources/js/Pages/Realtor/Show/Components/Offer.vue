@@ -20,7 +20,7 @@
       </div>
       <div>
         <Link
-          v-if="notSold"
+          v-if="!isSold"
           class="btn-outline text-xs font-medium"
           :href="route('realtor.offer.accept', { offer: offer.id })"
           method="PUT"
@@ -42,11 +42,12 @@ import Price from "@/Components/Price.vue";
 const props = defineProps({
   offer: Object,
   listingPrice: Number,
+  isSold: Boolean,
 });
 
 const difference = computed(() => props.offer.amount - props.listingPrice);
 const madeOn = computed(() => new Date(props.offer.created_at).toDateString());
-const notSold = computed(
-  () => !props.offer.accepted_at && !props.offer.rejected_at
-);
+// const notSold = computed(
+//   () => !props.offer.accepted_at && !props.offer.rejected_at
+// );
 </script>

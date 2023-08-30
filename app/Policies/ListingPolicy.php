@@ -61,7 +61,8 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing): bool
     {
-        return $user->id=== $listing->by_user_id || $user->is_admin;
+        // 房屋沒有售出 && 房屋是該使用者建立
+        return $listing->sold_at === null &&($user->id=== $listing->by_user_id || $user->is_admin);
     }
 
     /**
