@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
-Route::get('/hello', [IndexController::class, 'show'])->middleware('auth');
+Route::get('/', [IndexController::class, 'index'])->name('app.index');
+Route::get('/about', [IndexController::class, 'about']);
 
 // * Route只允許哪些操作
 // Route::resource('listing', ListingController::class)->only(['index','show','create', 'store']);

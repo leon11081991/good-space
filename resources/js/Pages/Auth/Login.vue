@@ -23,7 +23,7 @@
       </div>
 
       <div class="mt-4">
-        <button class="btn-primary w-full" type="submit">登入</button>
+        <button class="btn-blue w-full" type="submit">登入</button>
         <div class="mt-2 text-center">
           <p class="text-sm text-gray-700">
             沒有帳號嗎？請點

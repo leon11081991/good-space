@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer components {
+  .nav-item {
+    @apply text-lg text-gray-500 dark:text-gray-300 hover:text-blue-300 transition-all ease-in duration-300;
+  }
+
+  .section-heading {
+    @apply text-3xl mb-4 font-medium;
+  }
+
+  .order-list {
+    @apply flex flex-col gap-2 text-lg text-gray-500 dark:text-gray-400;
+  }
+
   .label {
     @apply block mb-1 text-gray-500 dark:text-gray-300 font-medium;
   }
@@ -24,18 +36,22 @@
   }
 
   .btn-normal {
-    @apply bg-gray-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md transition ease-in-out duration-500;
+    @apply px-6 py-2 bg-gray-600 hover:bg-blue-500 text-white font-medium rounded-md transition ease-in-out duration-500;
   }
 
-  .btn-primary {
-    @apply bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md transition ease-in-out duration-500;
+  .btn-blue {
+    @apply px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-md transition ease-in-out duration-500;
   }
 
   .btn-outline {
-    @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800 transition ease-in-out duration-500;
+    @apply px-6 py-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800 transition ease-in-out duration-500;
   }
 
   .tag {
     @apply text-xs font-bold border p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2;
+  }
+
+  .cant-access {
+    @apply opacity-25 pointer-events-none;
   }
 }

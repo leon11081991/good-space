@@ -41,7 +41,7 @@
       </div>
 
       <div class="mt-4">
-        <button class="btn-primary w-full" type="submit">建立帳號</button>
+        <button class="btn-blue w-full" type="submit">建立帳號</button>
         <div class="mt-2 text-center">
           <Link :href="route('login')" class="text-sm text-gray-500"
             >已經有帳號了！</Link

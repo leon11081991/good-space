@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-3xl mb-4">你所建立的房屋資訊</h2>
+  <h2 class="section-heading">你所建立的房屋資訊</h2>
 
   <section>
     <RealtorFilters :filters="filters" />
@@ -19,7 +19,8 @@
       >
         <div :class="{ 'opacity-25': listing.deleted_at }">
           <div v-if="listing.sold_at != null" class="tag">售出</div>
-          <div class="xl:flex items-center gap-2">
+          <!-- <div class="xl:flex items-center gap-2"> -->
+          <div class="">
             <Price :price="listing.price" class="text-2xl font-medium" />
             <ListingSpace :listing="listing" />
             <listingAddress :listing="listing" class="text-gray-500" />
@@ -34,6 +35,7 @@
               >預覽</a
             >
             <Link
+              :class="{ 'cant-access': listing.sold_at }"
               class="btn-outline text-xs font-medium"
               :href="route('realtor.listing.edit', { listing: listing.id })"
               >編輯</Link

@@ -66,7 +66,7 @@
       </div>
 
       <div class="col-span-6">
-        <button type="submit" class="btn-primary">建立售屋資訊</button>
+        <button type="submit" class="btn-blue">建立售屋資訊</button>
       </div>
     </div>
   </form>

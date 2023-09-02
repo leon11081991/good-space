@@ -23,8 +23,8 @@ class IndexController extends Controller
     );
     }
 
-    public function show()
+    public function about()
     {
-        return inertia('Index/Show');
+        return inertia('Index/About');
     }
 }

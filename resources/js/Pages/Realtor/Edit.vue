@@ -66,7 +66,7 @@
       </div>
 
       <div class="col-span-6">
-        <button type="submit" class="btn-primary">儲存</button>
+        <button type="submit" class="btn-blue">儲存</button>
       </div>
     </div>
   </form>

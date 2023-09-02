@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-3xl mb-4">出價通知</h1>
+  <h1 class="section-heading">出價通知</h1>
   <section
     v-if="notifications.data.length"
     class="text-gray-700 dark:text-gray-400"
@@ -17,7 +17,7 @@
                 listing: notification.data.listing_id,
               })
             "
-            class="text-indigo-600 dark:text-indigo-400"
+            class="text-blue-600 dark:text-blue-400"
             >這間房屋</Link
           >
           已被出價
